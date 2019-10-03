@@ -12,7 +12,9 @@ namespace blabla
         {
             int[] Arr = new int[10];
             InputInt(Arr);
+            Console.WriteLine(Count5(Arr));
             Console.ReadLine();
+
         }
         public static void InputInt(int[] Arr)
         {
@@ -44,12 +46,45 @@ namespace blabla
 
         public static bool IsContain5And6(int[] Arr)
         {
+            bool a=false, b =false;
             for (int i = 0; i < Arr.Length; i++)
             {
-                if (Arr[i] == 5 && Arr[i] == 6) return true;
+                if (Arr[i] == 5) a=true ;
+                else if (Arr[i] == 6) b=true;
             }
-            return false;
+            if (a == true && b == true) return true;
+            else return false;
         }
 
+        public static int Count5(int[] Arr)
+        {
+            int count = 0;
+            for (int i = 0; i < Arr.Length; i++)
+            {
+                if (Arr[i] == 5) count++;
+                //if (Arr[i] == Arr.Length - 1) return count;
+            }
+            return count;
+        }
+
+        public static int Count5or6(int[] Arr)
+        {
+            int count5or6 = 0;
+            for (int i = 0; i < Arr.Length; i++)
+            {
+                if (Arr[i] == 5 || Arr[i] == 6) count5or6++;
+            }
+            return count5or6;
+        }
+
+        public static int SumArr(int[] Arr)
+        {
+            int Sum = 0;
+            for (int i = 0; i < Arr.Length; i++)
+            {
+                Sum += Arr[i];
+            }
+            return Sum;
+        }
     }
 }

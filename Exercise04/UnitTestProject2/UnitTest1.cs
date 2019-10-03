@@ -119,5 +119,15 @@ namespace UnitTestProject2
             long result0 = Program.Factorial(0);
             Assert.AreEqual(1, result0);
         }
+
+        [TestMethod] 
+        public void TestToanCaoCap()
+        {
+            double result2 = Program.ToanCaoCap(2);
+            Assert.AreEqual(14/15,result2);
+
+            double result3 = Program.ToanCaoCap(3);
+            Assert.AreEqual(286 / 315, result3);
+        }
     }
 }

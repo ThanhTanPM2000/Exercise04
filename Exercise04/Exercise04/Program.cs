@@ -11,28 +11,32 @@ namespace Exercise04
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            while (true)
-            {
-                try
-                {
-                    Console.WriteLine("xin mời nhập n");
-                    long n = long.Parse(Console.ReadLine());
-                    Console.WriteLine("xin mời nhập x");
-                    double x = double.Parse(Console.ReadLine());
-                    Console.WriteLine("xin mời nhập y");
-                    double y = double.Parse(Console.ReadLine());
-                    UserInput(n, x, y);
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("bạn đã nhập dữ liệu sai: ");
-                    Console.WriteLine("n thuộc kiểu long ");
-                    Console.WriteLine("x thuộc kiểu double");
-                    Console.WriteLine("y thuộc kiểu double");
-                    Console.WriteLine("vui lòng nhập lại");
-                    Console.WriteLine("----------------------------------------------------------------");
-                }
-            }
+            Console.WriteLine(ToanCaoCap(3));
+            //while (true)
+            //{
+            //    try
+            //    {
+            //        //Console.WriteLine("xin mời nhập n");
+            //        //long n = long.Parse(Console.ReadLine());
+            //        //Console.WriteLine("xin mời nhập x");
+            //        //double x = double.Parse(Console.ReadLine());
+            //        //Console.WriteLine("xin mời nhập y");
+            //        //double y = double.Parse(Console.ReadLine());
+            //        //UserInput(n, x, y);
+            //        Console.WriteLine(ToanCaoCap(3));
+
+
+            //    }
+            //    catch (Exception)
+            //    {
+            //        Console.WriteLine("bạn đã nhập dữ liệu sai: ");
+            //        Console.WriteLine("n thuộc kiểu long ");
+            //        Console.WriteLine("x thuộc kiểu double");
+            //        Console.WriteLine("y thuộc kiểu double");
+            //        Console.WriteLine("vui lòng nhập lại");
+            //        Console.WriteLine("----------------------------------------------------------------");
+            //    }
+            //}
             Console.ReadLine();
 
         }
@@ -63,7 +67,6 @@ namespace Exercise04
 
         public static int Square(int n)
         {
-
             return n * n;
         }
 
@@ -74,7 +77,7 @@ namespace Exercise04
 
         public static int pow(int x, int y)
         {
-            Console.Write("pow của {0} và {1}: ", x, y);
+            //Console.Write("pow của {0} và {1}: ", x, y);
             int kq = x;
             if (y < 0)
             {
@@ -140,7 +143,7 @@ namespace Exercise04
         }
         public static long Factorial(long n)
         {
-            Console.Write("Factorial của {0}: ", n);
+            //Console.Write("Factorial của {0}: ", n);
             long kq = 1;
             if (n == 0) return 1;
             else if (n < 0)
@@ -172,6 +175,16 @@ namespace Exercise04
             Console.WriteLine(Rand2());
             Console.WriteLine(Factorial(n));
             Console.WriteLine("----------------------------------------------------------------");
+        }
+
+        public static double ToanCaoCap(double n)
+        {
+            double m = 0;
+            for (int k = 0; k <= n; k++)
+            {
+                m += pow(-1, k) * ((float)(pow(2, (2 * k) + 1)) / Factorial(2 * k + 1));
+            }
+            return m;
         }
     }
 

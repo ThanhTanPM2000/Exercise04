@@ -78,5 +78,7 @@ namespace UnitTestProject1
             int resultSum2 = Program.SumArr(arr1);
             Assert.AreEqual(24, resultSum2);
         }
+
+
     }
 }

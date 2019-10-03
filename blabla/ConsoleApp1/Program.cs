@@ -22,6 +22,7 @@ namespace ConsoleApp1
             DrawTriangle(n);
             DrawTriangle2(n);
             DrawW(n);
+            DrawX(n);
             Console.ReadLine();
         }
 
@@ -44,7 +45,7 @@ namespace ConsoleApp1
         {
             Console.WriteLine("Draw Square: ");
             for (int i = 0; i < n; i++)
-            {
+            { 
                 for (int j = 0; j < n; j++)
                 {
                     Console.Write("o ");
@@ -198,6 +199,31 @@ namespace ConsoleApp1
                 }
                 if (i > 0) { t=t+ 2; z++; x++; }
                 t2 -= 2;
+                Console.WriteLine();
+            }
+        }
+
+        public static void DrawX(int n)
+        {
+            int a = 0, b = 0, c = 2 * n ;
+            Console.WriteLine("Vẽ Chữ X" );
+            for (int i = 0; i <= n; i++)
+            {
+                for (int j = 0; j < 2 * n + 1; j++)
+                {
+                    if (i == a && j == b)
+                    {
+                        Console.Write("*");
+                    }
+                    else if (i + j == c)
+                    {
+                        if (i ==n/2 && j==n/2) break;
+                        Console.Write("*");
+                    }
+                    else Console.Write(" ");
+                }
+                c -= 1;
+                a++; b += 2;
                 Console.WriteLine();
             }
         }

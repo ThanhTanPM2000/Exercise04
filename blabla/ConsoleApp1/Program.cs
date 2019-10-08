@@ -10,221 +10,234 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+
             Console.OutputEncoding = Encoding.UTF8;
-            Console.WriteLine("mời nhập mảng");
-            int n = int.Parse(Console.ReadLine());
-            string[,] Arr = new string[n, n];
-            DrawVertical(Arr, n);
-            DrawSquare(Arr, n);
-            DrawSquareCenterEmpty(Arr, n);
-            DrawU(Arr, n);
-            DrawV(n);
-            DrawTriangle(n);
-            DrawTriangle2(n);
-            DrawW(n);
-            DrawX(n);
+            bool test = true;
+            while (test)
+            {
+                Console.WriteLine("xin mời nhập n: ");
+                int n = int.Parse(Console.ReadLine());
+                Console.WriteLine("xin mời chọn kí tự vẽ: ");
+                char k = char.Parse(Console.ReadLine());
+                DrawVertical(n, k);
+                Console.WriteLine("======================================================================");
+                DrawHorizal(n, k);
+                Console.WriteLine("\n======================================================================");
+                DrawSquare(n, k);
+                Console.WriteLine("\n======================================================================");
+                DrawU(n, k);
+                Console.WriteLine("\n======================================================================");
+                DrawV(n, k);
+                Console.WriteLine("\n======================================================================");
+                DrawTriangle(n, k);
+                Console.WriteLine("\n======================================================================");
+                DrawTriAngLe2(n, k);
+                Console.WriteLine("\n======================================================================");
+                DrawW(n, k);
+                Console.WriteLine("\n======================================================================");
+                DrawA(n, k);
+                Console.WriteLine("\n======================================================================");
+                DrawX(n, k);
+                Console.WriteLine("\n======================================================================");
+                DrawPlus(n, k);
+
+                Console.WriteLine("\n\n bạn có muốn tiếp tục (Y/N)");
+                string q = Console.ReadLine();
+                if (q.ToUpper().Equals("Y")) test = true;
+                else test = false;
+            }
+
+
+
             Console.ReadLine();
         }
 
-        public static void DrawVertical(string[,] Array, int n)
+        public static void DrawVertical(int n, char c)
         {
-            Console.WriteLine("Draw Vertical: ");
             for (int i = 0; i < n; i++)
             {
-                if (i == 0)
-                {
-                    for (int j = 0; j < n; j++)
-                    {
-                        Console.WriteLine("i");
-                    }
-                }
+                Console.WriteLine(c);
             }
         }
 
-        public static void DrawSquare(string[,] Array, int n)
+        public static void DrawHorizal(int n, char c)
         {
-            Console.WriteLine("Draw Square: ");
             for (int i = 0; i < n; i++)
-            { 
-                for (int j = 0; j < n; j++)
-                {
-                    Console.Write("o ");
-                }
+            {
+                Console.Write(c);
+            }
+        }
+
+        public static void DrawSquare(int n, char c)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                DrawHorizal(n, c);
+                Console.WriteLine();
+            }
+
+        }
+
+        public static void DrawU(int n, char c)
+        {
+            for (int i = 0; i < n - 1; i++)
+            {
+                DrawHorizal(1, c);
+                DrawHorizal(n - 2, ' ');
+                DrawHorizal(1, c);
+                Console.WriteLine();
+            }
+            DrawHorizal(n, c);
+        }
+
+        public static void DrawV(int n, char c)
+        {
+            int A = n + 1, B = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                DrawHorizal(B, ' ');
+                DrawHorizal(1, c);
+                DrawHorizal(A, ' ');
+                if (B < n - 1) DrawHorizal(1, c);
+                A -= 2; B++;
                 Console.WriteLine();
             }
         }
 
-        public static void DrawSquareCenterEmpty(string[,] Array, int n)
+        public static void DrawTriangle(int n, char c)
         {
-            Console.WriteLine("vẽ hình vuông rỗng");
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < n; j++)
-                {
-                    if (i == 0 || i == n - 1)
-                    {
-                        Console.Write("c ");
-                    }
-                    else if (j == 0 || j == n - 1)
-                        Console.Write("c ");
-                    else Console.Write("  ");
-                }
-                Console.WriteLine();
-            }
-        }
-
-        public static void DrawU(string[,] Array, int n)
-        {
-            Console.WriteLine("vẽ hình Chữ U");
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < n; j++)
-                {
-                    if (i == n - 1)
-                    {
-                        Console.Write("u ");
-                    }
-                    else if (j == 0 || j == n - 1)
-                        Console.Write("u ");
-                    else Console.Write("  ");
-                }
-                Console.WriteLine();
-            }
-        }
-
-        public static void DrawV(int n)
-        {
-            int father = n - 2;
-            Console.WriteLine("Vẽ hình chữ V: ");
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < n; j++)
-                {
-                    if (i == j) Console.Write("v");
-                    else Console.Write(" ");
-                }
-                for(int k=0; k<=father; k++)
-                {
-                    if (k == father) Console.Write("v");
-                    else Console.Write(" ");
-                }
-                father--;
-                Console.WriteLine();
-                
-            }
-        }
-
-        public static void DrawTriangle(int n)
-        {
-            Console.WriteLine("Vẽ Tam Giác Ngược" );
-            int q = 0;
-            int father = n - 2;
-            while (q<2*n-1)
-            {
-                Console.Write("v");
-                q++;
-            }
+            DrawHorizal(2 * n - 1, c);
             Console.WriteLine();
-            for (int i = 1; i < n; i++)
+
+            int A = n - 1, B = 1;
+            for (int i = 0; i < n - 1; i++)
             {
-                for (int j = 0; j < n; j++)
-                {
-                    if (i == j) Console.Write("v");
-                    else Console.Write(" ");
-                }
-                for (int k = 1; k <= father; k++)
-                {
-                    if (k == father) Console.Write("v");
-                    else Console.Write(" ");
-                }
-                father--;
+                DrawHorizal(B, ' ');
+                DrawHorizal(1, c);
+                DrawHorizal(A, ' ');
+                if (i != n - 2) DrawHorizal(1, c);
+                A -= 2; B++;
                 Console.WriteLine();
             }
-        }
-        public static void DrawTriangle2(int n)
-        {
-            Console.WriteLine("Vẽ Tam Giác Thẳng đứng" );
-            int t = n-1;
-            for(int i=0; i <n-1; i++)
-            {
-                for (int j = 0; j <= n * 2 - 1; j++)
-                {
-                    if (i + j == n-1)
-                    {                       
-                        Console.Write("A");
-                    }
-                    else if (i + j == t) Console.Write("A");
-                    else Console.Write(" ");
-                }
-                t += 2;
-                Console.WriteLine();
-            }
-            for (int w = 0; w < 2 * n - 1; w++) Console.Write("A");
-            Console.WriteLine();
         }
 
-        public static void DrawW(int n)
+        public static void DrawTriAngLe2(int n, char c)
         {
-            int t = 1,t2 =2*n-3, z = 1,x = 0;
-            int father = n - 2;
-            Console.WriteLine("Vẽ hình chữ W: ");
+            int A = n - 1, B = 0;
+            for (int i = 0; i < n - 1; i++)
+            {
+                DrawHorizal(A, ' ');
+                DrawHorizal(1, c);
+                if (i != 0)
+                {
+                    DrawHorizal(B, ' ');
+                    DrawHorizal(1, c);
+                    B += 2;
+                }
+                else B++;
+                A--;
+                Console.WriteLine();
+            }
+            DrawHorizal(2 * n - 1, c);
+        }
+
+        public static void DrawW(int n, char c)
+        {
+            int B = 2 * n - 3, C = 0, A = 0;
             for (int i = 0; i < n; i++)
             {
-                for (int j = 0; j < n; j++)
-                {
-                    if (i == j) Console.Write("v");
-                    else Console.Write(" ");
-                }
-                for (int k = 0; k <= father; k++)
-                {
-                    if (k == father) Console.Write("v");
-                    else Console.Write(" ");
-                }
-                father--;
-                for (int a = 0; a < n; a++)
-                {
-                    if (i == z && a == x)
-                    {
-                        for (int c = 1; c <= t; c++) Console.Write(" ");
-                        Console.Write("v");
-                    }
-                }
-                for (int b = 0; b < n; b++)
-                {
-                    if (i + b == n - 2 && (i != n))
-                    {
-                        for (int c = 1; c <= t2; c++) Console.Write(" ");
-                        Console.Write("v");
-                    }
-                }
-                if (i > 0) { t=t+ 2; z++; x++; }
-                t2 -= 2;
+                DrawHorizal(A, ' ');
+                DrawHorizal(1, c);
+                DrawHorizal(B, ' ');
+                if (i != n - 1) DrawHorizal(1, c);
+                DrawHorizal(C, ' ');
+                if (i == 0) C++;
+                else C += 2;
+                if (i != 0) DrawHorizal(1, c);
+                DrawHorizal(B, ' ');
+                if (i != n - 1) DrawHorizal(1, c);
+                A++; B -= 2;
                 Console.WriteLine();
             }
         }
 
-        public static void DrawX(int n)
+        public static void DrawA(int n, char c)
         {
-            int a = 0, b = 0, c = 2 * n ;
-            Console.WriteLine("Vẽ Chữ X" );
+            int A = n, B = 0;
             for (int i = 0; i <= n; i++)
             {
-                for (int j = 0; j < 2 * n + 1; j++)
+                DrawHorizal(A, ' ');
+                DrawHorizal(1, c);
+                if (i != 0)
                 {
-                    if (i == a && j == b)
+                    if (i != n / 2)
                     {
-                        Console.Write("*");
+                        DrawHorizal(B, ' ');
                     }
-                    else if (i + j == c)
-                    {
-                        if (i ==n/2 && j==n/2) break;
-                        Console.Write("*");
-                    }
-                    else Console.Write(" ");
+                    else DrawHorizal(B, c);
+                    DrawHorizal(1, c);
+                    B += 2;
                 }
-                c -= 1;
-                a++; b += 2;
+                else B++;
+                A--;
                 Console.WriteLine();
+            }
+        }
+
+        public static void DrawX(int n, char c)
+        {
+            int A = n - 1, B = 0;
+            for (int i = 0; i < n / 2; i++)
+            {
+                DrawHorizal(B, ' ');
+                DrawHorizal(1, c);
+                DrawHorizal(A, ' ');
+                DrawHorizal(1, c);
+                A -= 2; B++;
+                Console.WriteLine();
+            }
+            if (n % 2 == 0)
+            {
+                DrawHorizal(n / 2, ' ');
+                DrawHorizal(1, c);
+                B = 1;
+                Console.WriteLine();
+            }
+            else
+            {
+                DrawHorizal(n / 2, ' ');
+                DrawHorizal(1, c);
+                DrawHorizal(1, c);
+                B = 2;
+                Console.WriteLine();
+            }
+            A = n / 2 - 1;
+            for (int j = 0; j < n / 2; j++)
+            {
+                DrawHorizal(A, ' ');
+                DrawHorizal(1, c);
+                DrawHorizal(B, ' ');
+                DrawHorizal(1, c);
+                A--; B += 2;
+                Console.WriteLine();
+            }
+        }
+
+        public static void DrawPlus(int n, char c)
+        {
+            for (int i = 0; i <= n; i++)
+            {
+                if (i != n / 2)
+                {
+                    DrawHorizal(n - 2, ' ');
+                    DrawHorizal(1, c);
+                    Console.WriteLine();
+                }
+                else
+                {
+                    DrawHorizal(n + 1, c); Console.WriteLine();
+                }
             }
         }
     }
